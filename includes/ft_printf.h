@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:38 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/15 14:20:47 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:55:42 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@
 
 // common
 void	ft_putchar(char a);
-char	*ft_convert_base(unsigned int nbr);
-
-
+char	*ft_base(long long int nbr, float base);
 
 // utils
 void	ft_putchar(char c);

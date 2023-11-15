@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:07 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/15 14:22:24 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:05:08 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,28 @@
 
 int	ft_specifics(const char *str, int i, va_list args)
 {
-	void	*temp;
-	char	c;	
 
 	if (str[i] == '%' && str[i + 1] == 'c')
-	{
-		c = (char)(va_arg(args, int));
-		write(1, &c, 1);
-	}
+		ft_putchar((char)(va_arg(args, int)));
 	else if (str[i] == '%' && str[i + 1] == 's')
-	{
-		temp = (char *)va_arg(args, char *);
-		ft_putstr(temp);
-	}
+		ft_putstr((char *)va_arg(args, char *));
 	else if (str[i] == '%' && str[i + 1] == 'p')
 	{
 		ft_putstr("0x10");
-		ft_putstr(ft_convert_base((unsigned int)va_arg(args, void *)));
+		ft_putstr(ft_base((unsigned int)va_arg(args, void *), 16));
 	}
+	else if (str[i] == '%' && str[i + 1] == 'd')
+		ft_putstr(ft_base((int)va_arg(args, int), 10));
+	else if (str[i] == '%' && str[i + 1] == 'i')
+		ft_putstr(ft_base((int)va_arg(args, int), 10));
+	else if (str[i] == '%' && str[i + 1] == 'u')
+		ft_putstr(ft_base((unsigned int)va_arg(args, unsigned int), 10));
+	else if (str[i] == '%' && str[i + 1] == 'x')
+		ft_putstr(ft_base((unsigned int)va_arg(args, unsigned int), 16));
+	else if (str[i] == '%' && str[i + 1] == 'X')
+		ft_putstr(ft_base((unsigned int)va_arg(args, unsigned int), 16.5));
+	else if (str[i] == '%' && str[i + 1] == '%')
+		ft_putchar('%');
 	else
 		return (0);
 	return (1);
@@ -63,7 +67,10 @@ int	main(void)
 	char	x = 'i';
 	char	*y = "Hello World !";
 	void	*z = "t";
-	ft_printf("Bonjour %c J'aime ca\n Hallo%stop %p", x, y, z);
+	int		i = 5489;
+	unsigned int	u = 789;
+	ft_printf("Bonjour %c J'aime ca\n Hallo%stop %p and this is a decimal %d also %i\nhere it is an unsigned %u and an hexa %x and big one %X and a %%", x, y, z, i, i, u, i, i);
 	write(1, "\n", 1);
-	printf("Bonjour %c J'aime ca\n Hallo%stop %p", x, y, z);
+	printf("Bonjour %c J'aime ca\n Hallo%stop %p and this is a decimal %d also %i\nhere it is an unsigned %u and an hexa %x and big one %X and a %%", x, y, z, i, i, u, i, i);
+
 }
