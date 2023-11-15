@@ -6,13 +6,14 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:17:13 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/15 15:18:01 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:52:28 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }

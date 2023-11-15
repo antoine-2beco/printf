@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:29:59 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/15 14:59:31 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:25:03 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,18 @@ static char	*ft_convert_nbr_base(long a, char *base, char *res, int i)
 	return (res);
 }
 
-char	*ft_base(long long int nbr, float base)
+int	ft_base(long long int nbr, float base)
 {
 	char	*res;
 	int		res_lenght;
+	int		c;
 
 	if (!nbr)
-		return (NULL);
+		return (0);
 	res_lenght = ft_lenght_nbr(nbr, base);
-	res = malloc(sizeof(char) * (res_lenght) + 1);
+	res = malloc(sizeof(char) * (res_lenght + 1));
 	if (!res)
-		return (NULL);
+		return (0);
 	if (base == 16)
 		res = ft_convert_nbr_base(nbr, "0123456789abcdef", res, res_lenght);
 	else if (base == 16.5)
@@ -74,7 +75,9 @@ char	*ft_base(long long int nbr, float base)
 	else if (base == 10)
 		res = ft_convert_nbr_base(nbr, "0123456789", res, res_lenght);
 	else
-		return (NULL);
+		return (0);
 	res[res_lenght] = '\0';
-	return (res);
+	c = ft_putstr(res);
+	free(res);
+	return (c);
 }

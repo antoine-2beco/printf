@@ -6,15 +6,19 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 16:39:09 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/15 13:26:26 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:17:14 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
+	int	l;
+
 	if (!s)
-		return ;
-	write(1, s, ft_strlen(s));
+		return (ft_putstr("(null)"));
+	l = ft_strlen(s);
+	write(1, s, l);
+	return (l);
 }

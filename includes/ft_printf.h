@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:38 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/15 15:18:49 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:23:14 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 
 // common
 int		ft_printf(const char *str, ...);
-char	*ft_base(long long int nbr, float base);
+int		ft_base(long long int nbr, float base);
 
 // utils
-void	ft_putchar(char c);
-void	ft_putstr(char *s);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
 size_t	ft_strlen(const char *s);
 
 #endif
