@@ -6,13 +6,13 @@
 #    By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 16:52:56 by ade-beco          #+#    #+#              #
-#    Updated: 2023/11/15 14:56:04 by ade-beco         ###   ########.fr        #
+#    Updated: 2023/11/15 15:15:28 by ade-beco         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=		"libftprintf.a"
+NAME		=		libftprintf.a
 
-SRCS 		=		src/ft_printf.c src/ft_base.c
+SRCS 		=		src/ft_printf.c src/ft_base.c 
 
 LIBFT		=		src/ft_putchar.c src/ft_putstr.c src/ft_strlen.c
 

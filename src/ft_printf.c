@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:07 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/15 15:05:08 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:17:46 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 int	ft_specifics(const char *str, int i, va_list args)
 {
-
 	if (str[i] == '%' && str[i + 1] == 'c')
 		ft_putchar((char)(va_arg(args, int)));
 	else if (str[i] == '%' && str[i + 1] == 's')
@@ -61,16 +60,15 @@ int	ft_printf(const char *str, ...)
 	return (1);
 }
 
-
-int	main(void)
+/*int	main(void)
 {
 	char	x = 'i';
 	char	*y = "Hello World !";
 	void	*z = "t";
 	int		i = 5489;
 	unsigned int	u = 789;
-	ft_printf("Bonjour %c J'aime ca\n Hallo%stop %p and this is a decimal %d also %i\nhere it is an unsigned %u and an hexa %x and big one %X and a %%", x, y, z, i, i, u, i, i);
+	ft_printf("%c %s %p %d %i %u %x %X %%", x, y, z, i, i, u, i, i);
 	write(1, "\n", 1);
-	printf("Bonjour %c J'aime ca\n Hallo%stop %p and this is a decimal %d also %i\nhere it is an unsigned %u and an hexa %x and big one %X and a %%", x, y, z, i, i, u, i, i);
+	printf("%c %s %p %d %i %u %x %X %%", x, y, z, i, i, u, i, i);
 
-}
+}*/
