@@ -6,16 +6,18 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:07 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/08 16:28:12 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:22:24 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+#include <stdio.h>
+
 int	ft_specifics(const char *str, int i, va_list args)
 {
-	void			*temp;
-	char			c;
+	void	*temp;
+	char	c;	
 
 	if (str[i] == '%' && str[i + 1] == 'c')
 	{
@@ -29,8 +31,8 @@ int	ft_specifics(const char *str, int i, va_list args)
 	}
 	else if (str[i] == '%' && str[i + 1] == 'p')
 	{
-		temp = (uint8_t *)va_arg(args, uint8_t *);
-		write (1, &temp, sizeof(temp));
+		ft_putstr("0x10");
+		ft_putstr(ft_convert_base((unsigned int)va_arg(args, void *)));
 	}
 	else
 		return (0);
@@ -40,13 +42,13 @@ int	ft_specifics(const char *str, int i, va_list args)
 int	ft_printf(const char *str, ...)
 {
 	unsigned int	i;
-	va_list 		args;
+	va_list			args;
 
 	i = -1;
 	va_start(args, str);
 	while (str[++i] != '\0')
 	{
-		if (!ft_specifics(str, i, args)) //&& ft_isprint(str[i])
+		if (!ft_specifics(str, i, args))
 			ft_putchar(str[i]);
 		else
 			i++;
@@ -56,7 +58,6 @@ int	ft_printf(const char *str, ...)
 }
 
 
-#include <stdio.h>
 int	main(void)
 {
 	char	x = 'i';

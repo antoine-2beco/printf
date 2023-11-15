@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 16:59:38 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/15 14:20:47 by ade-beco         ###   ########.fr       */
+/*   Created: 2023/10/21 16:39:09 by ade-beco          #+#    #+#             */
+/*   Updated: 2023/11/15 13:26:26 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdlib.h>
-
-# include <stdio.h>
-
-// common
-void	ft_putchar(char a);
-char	*ft_convert_base(unsigned int nbr);
-
-
-
-// utils
-void	ft_putchar(char c);
-void	ft_putstr(char *s);
-size_t	ft_strlen(const char *s);
-
-
-#endif
+void	ft_putstr(char *s)
+{
+	if (!s)
+		return ;
+	write(1, s, ft_strlen(s));
+}
