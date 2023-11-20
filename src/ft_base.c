@@ -6,16 +6,16 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:29:59 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/15 17:25:03 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:24:40 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_lenght_nbr(int nbr, int base_lenght)
+static int	ft_lenght_nbr(unsigned long long nbr, int base_lenght)
 {
-	unsigned int	nb;
-	int				lenght;
+	unsigned long long	nb;
+	int					lenght;
 
 	lenght = 0;
 	if (nbr < 0)
@@ -34,50 +34,39 @@ static int	ft_lenght_nbr(int nbr, int base_lenght)
 	return (lenght);
 }
 
-static char	*ft_convert_nbr_base(long a, char *base, char *res, int i)
+static char	*ft_convert_nbr_base(unsigned long long a,
+	int base, char *res, int i)
 {
-	int	l;
-
-	l = ft_strlen(base);
-	if (a < 0)
+	while (a != 0)
 	{
-		a = -a;
-		res[0] = '-';
-	}
-	i--;
-	while (a >= l)
-	{
-		res[i] = base[a % l];
-		a /= l;
+		if ((a % base) < 10)
+			res[i - 1] = (a % base) + 48;
+		else
+			res[i - 1] = (a % base) + 55;
+		a /= base;
 		i--;
 	}
-	if (a < l)
-		res[i] = base[a];
 	return (res);
 }
 
-int	ft_base(long long int nbr, float base)
+int	ft_base(unsigned long long nbr, int base, int lower)
 {
 	char	*res;
 	int		res_lenght;
 	int		c;
 
-	if (!nbr)
-		return (0);
+	if (nbr == 0)
+		return (ft_putchar('0'));
 	res_lenght = ft_lenght_nbr(nbr, base);
 	res = malloc(sizeof(char) * (res_lenght + 1));
 	if (!res)
 		return (0);
-	if (base == 16)
-		res = ft_convert_nbr_base(nbr, "0123456789abcdef", res, res_lenght);
-	else if (base == 16.5)
-		res = ft_convert_nbr_base(nbr, "0123456789ABCDEF", res, res_lenght);
-	else if (base == 10)
-		res = ft_convert_nbr_base(nbr, "0123456789", res, res_lenght);
-	else
-		return (0);
+	res = ft_convert_nbr_base(nbr, base, res, res_lenght);
 	res[res_lenght] = '\0';
-	c = ft_putstr(res);
+	if (lower == 0)
+		c = ft_putstr(res);
+	else
+		c = ft_putstr(ft_strtolower(res));
 	free(res);
 	return (c);
 }
