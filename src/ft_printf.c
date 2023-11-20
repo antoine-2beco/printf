@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:07 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/20 13:24:49 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:37:45 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ static int	ft_specifics(const char *str, int i, va_list arg, unsigned int *c)
 	else if (str[i] == '%' && str[i + 1] == 'p')
 		*c += ft_treat_void(va_arg(arg, unsigned long long));
 	else if (str[i] == '%' && str[i + 1] == 'd')
-		*c += ft_treat_dec(va_arg(arg, char *));
-	/*else if (str[i] == '%' && str[i + 1] == 'i')
-		*c += ft_base((char *)va_arg(arg, char *), "012345789");
+		*c += ft_treat_dec(va_arg(arg, int));
+	else if (str[i] == '%' && str[i + 1] == 'i')
+		*c += ft_treat_dec(va_arg(arg, int));
 	else if (str[i] == '%' && str[i + 1] == 'u')
-		*c += ft_base((char *)va_arg(arg, char *), "012345789");
+		*c += ft_treat_dec(va_arg(arg, unsigned int));
 	else if (str[i] == '%' && str[i + 1] == 'x')
-		*c += ft_base((char *)va_arg(arg, char *), "012346789abcdef");
+		*c += ft_treat_hexa(va_arg(arg, int), 1);
 	else if (str[i] == '%' && str[i + 1] == 'X')
-		*c += ft_base((char *)va_arg(arg, char *), "012346789ABCDEF");
+		*c += ft_treat_hexa(va_arg(arg, int), 0);
 	else if (str[i] == '%' && str[i + 1] == '%')
-		*c += ft_putchar('%');*/
+		*c += ft_putchar('%');
 	else
 		return (0);
 	return (1);
@@ -61,24 +61,15 @@ int	ft_printf(const char *str, ...)
 	return (c);
 }
 
-/*int	main(void)
-{
-	char	x = 'i';
-	char	*y = "Hello World !";
-	void	*z = "t";
-	int		i = 5489;
-	unsigned int	u = 789;
-	ft_printf("%c %s %p %d %i %u %x %X %%", x, y, z, i, i, u, i, i);
-	write(1, "\n", 1);
-	printf("%c %s %p %d %i %u %x %X %%", x, y, z, i, i, u, i, i);
-}*/
-
-/*int	main(void)
+int	main(void)
 {
 	void	*p;
 
 	p = "khjkhjg";
 
 	ft_printf(" %p ", (void *)0);
-	printf("\n %p ", (void *)0);
-}*/
+	printf("\n %p \n\n", (void *)0);
+
+	ft_printf(" %x ", -1);
+	printf("\n %x ", -1);
+}

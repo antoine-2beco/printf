@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 16:18:11 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/20 13:19:40 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:48:15 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ static int	ft_tolower(int c)
 	return (c);
 }
 
-char	*ft_strtolower(char const *s)
+int	ft_putstrtolower(char const *s)
 {
 	unsigned int	i;
 	char			*out;
+	int				c;
 
 	if (!s)
 		return (NULL);
@@ -36,6 +37,7 @@ char	*ft_strtolower(char const *s)
 		i++;
 	}
 	out[i] = '\0';
+	c = ft_putstr(out);
 	free(out);
-	return (out);
+	return (c);
 }

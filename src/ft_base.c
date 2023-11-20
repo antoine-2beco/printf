@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:29:59 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/20 13:24:40 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:47:23 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	ft_base(unsigned long long nbr, int base, int lower)
 		return (0);
 	res = ft_convert_nbr_base(nbr, base, res, res_lenght);
 	res[res_lenght] = '\0';
-	if (lower == 0)
-		c = ft_putstr(res);
+	if (lower)
+		c = ft_putstrtolower(res);
 	else
-		c = ft_putstr(ft_strtolower(res));
+		c = ft_putstr(res);
 	free(res);
 	return (c);
 }
