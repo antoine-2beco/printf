@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:38 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/22 16:58:06 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/22 23:36:34 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		ft_printf(const char *str, ...);
 int		ft_base(unsigned long long nbr, int base, int lower);
 int		ft_treat_void(long long int nbr);
 int		ft_treat_dec(long long int nbr);
-int		ft_atoi(const char *str);
 
 // utils
 int		ft_putchar(char c);
