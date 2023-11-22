@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:07 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/22 16:11:15 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:51:26 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static int	ft_specifics(const char *str, int i, va_list arg)
 
 int	ft_printf(const char *str, ...)
 {
-	unsigned int	i;
-	va_list			arg;
-	int				c;
-	int				j;
+	int		i;
+	va_list	arg;
+	int		c;
+	int		j;
 
 	i = -1;
 	c = 0;
@@ -56,7 +56,7 @@ int	ft_printf(const char *str, ...)
 	while (str[++i] != '\0')
 	{
 		j = ft_specifics(str, i, arg);
-		if (j == -2 && ft_putchar(str[i]) != -1)
+		if (j == -2 && str[i] != '%' && ft_putchar(str[i]) != -1)
 			c++;
 		else if (j != -1 && j != -2)
 		{
@@ -70,9 +70,9 @@ int	ft_printf(const char *str, ...)
 	return (c);
 }
 
-/*int	main(void)
+int	main(void)
 {
-	ft_printf("%X", 123456);
-	printf("\n%X", 123456);
+	ft_printf("%s | | %x","");
+	printf("\n%s | | %x","");
+	//printf("%", "");
 }
-*/
