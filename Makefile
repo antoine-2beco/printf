@@ -6,17 +6,15 @@
 #    By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 16:52:56 by ade-beco          #+#    #+#              #
-#    Updated: 2023/11/22 16:52:44 by ade-beco         ###   ########.fr        #
+#    Updated: 2023/11/22 16:56:19 by ade-beco         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=		libftprintf.a
 
-SRCS 		=		src/ft_printf.c src/ft_base.c src/ft_treatments.c
+SRCS 		=		src/ft_printf.c src/ft_base.c src/ft_treatments.c src/ft_utils.c src/ft_atoi.c
 
-LIBFT		=		src/ft_putstr.c src/ft_strlen.c src/ft_atoi.c
-
-OBJS		=		$(SRCS:.c=.o) $(LIBFT:.c=.o)
+OBJS		=		$(SRCS:.c=.o)
 
 CC			=		cc -Wall -Wextra -Werror -g
 

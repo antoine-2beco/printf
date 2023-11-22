@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:44:13 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/20 11:22:33 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:58:38 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_atoi(const char *str)
 	int				n;
 	long long int	res;
 	long long int	temp;
-	size_t			i;
+	int				i;
 
 	n = 1;
 	res = 0;
