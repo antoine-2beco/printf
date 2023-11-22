@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:50:31 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/20 14:40:59 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:58:08 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,30 @@
 int	ft_treat_dec(long long int nbr)
 {
 	int	c;
+	int	j;
 
 	c = 0;
 	if (nbr < 0)
 	{
-		c += ft_putchar('-');
+		if (ft_putchar('-') == -1)
+			return (-1);
 		nbr *= -1;
+		c++;
 	}
-	return (ft_base(nbr, 10, 0) + c);
+	j = ft_base(nbr, 10, 0);
+	if (j == -1)
+		return (-1);
+	return (c + j);
 }
 
 int	ft_treat_void(long long int nbr)
 {
-	int	c;
+	int	j;
 
-	c = 0;
-	c += ft_putstr("0x");
-	c += ft_base((unsigned long long)(nbr), 16, 1);
-	return (c);
-}
-
-int	ft_treat_hexa(long long int nbr, int lower)
-{
-	int	c;
-
-	c = 0;
-	if (nbr < 0)
-	{
-		c += ft_putchar('-');
-		nbr *= -1;
-	}
-	if (lower)
-		return (ft_base(nbr, 16, 1) + c);
-	else
-		return (ft_base(nbr, 16, 0) + c);
+	if (ft_putstr("0x", 0) == -1)
+		return (-1);
+	j = ft_base((unsigned long long)nbr, 16, 1);
+	if (j == -1)
+		return (-1);
+	return (2 + j);
 }

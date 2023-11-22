@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:07 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/20 14:37:45 by ade-beco         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:11:15 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,60 +16,63 @@
 #include <stdint.h>
 #include <stdio.h>
 
-static int	ft_specifics(const char *str, int i, va_list arg, unsigned int *c)
+static int	ft_specifics(const char *str, int i, va_list arg)
 {
+	int	j;
+
 	if (str[i] == '%' && str[i + 1] == 'c')
-		*c += ft_putchar((char)(va_arg(arg, int)));
+		j = ft_putchar((char)(va_arg(arg, int)));
 	else if (str[i] == '%' && str[i + 1] == 's')
-		*c += ft_putstr((char *)va_arg(arg, char *));
+		j = ft_putstr((char *)va_arg(arg, char *), 0);
 	else if (str[i] == '%' && str[i + 1] == 'p')
-		*c += ft_treat_void(va_arg(arg, unsigned long long));
+		j = ft_treat_void(va_arg(arg, unsigned long long));
 	else if (str[i] == '%' && str[i + 1] == 'd')
-		*c += ft_treat_dec(va_arg(arg, int));
+		j = ft_treat_dec(va_arg(arg, int));
 	else if (str[i] == '%' && str[i + 1] == 'i')
-		*c += ft_treat_dec(va_arg(arg, int));
+		j = ft_treat_dec(va_arg(arg, int));
 	else if (str[i] == '%' && str[i + 1] == 'u')
-		*c += ft_treat_dec(va_arg(arg, unsigned int));
+		j = ft_treat_dec(va_arg(arg, unsigned int));
 	else if (str[i] == '%' && str[i + 1] == 'x')
-		*c += ft_treat_hexa(va_arg(arg, int), 1);
+		j = ft_base(va_arg(arg, unsigned int), 16, 1);
 	else if (str[i] == '%' && str[i + 1] == 'X')
-		*c += ft_treat_hexa(va_arg(arg, int), 0);
+		j = ft_base(va_arg(arg, unsigned int), 16, 0);
 	else if (str[i] == '%' && str[i + 1] == '%')
-		*c += ft_putchar('%');
+		j = ft_putchar('%');
 	else
-		return (0);
-	return (1);
+		return (-2);
+	return (j);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	unsigned int	i;
 	va_list			arg;
-	unsigned int	c;
+	int				c;
+	int				j;
 
 	i = -1;
 	c = 0;
 	va_start(arg, str);
 	while (str[++i] != '\0')
 	{
-		if (!ft_specifics(str, i, arg, &c))
-			c += ft_putchar(str[i]);
-		else
+		j = ft_specifics(str, i, arg);
+		if (j == -2 && ft_putchar(str[i]) != -1)
+			c++;
+		else if (j != -1 && j != -2)
+		{
+			c += j;
 			i++;
+		}
+		else
+			return (-1);
 	}
 	va_end(arg);
 	return (c);
 }
 
-int	main(void)
+/*int	main(void)
 {
-	void	*p;
-
-	p = "khjkhjg";
-
-	ft_printf(" %p ", (void *)0);
-	printf("\n %p \n\n", (void *)0);
-
-	ft_printf(" %x ", -1);
-	printf("\n %x ", -1);
+	ft_printf("%X", 123456);
+	printf("\n%X", 123456);
 }
+*/
