@@ -6,42 +6,51 @@
 #    By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 16:52:56 by ade-beco          #+#    #+#              #
-#    Updated: 2023/11/22 23:36:44 by ade-beco         ###   ########.fr        #
+#    Updated: 2024/01/09 18:00:08 by ade-beco         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=		libftprintf.a
+PRINTF		=		libftprintf
 
-SRCS 		=		src/ft_printf.c src/ft_base.c src/ft_treatments.c src/ft_utils.c
+LIBFT		=		libft
+LIBFT_PATH	=		./libft/
 
-OBJS		=		$(SRCS:.c=.o)
+SRCS 		=		ft_printf.c ft_printf_base.c ft_printf_utils.c
+
+OBJECTS		=		$(SRCS:.c=.o)
 
 CC			=		cc -Wall -Wextra -Werror -g
 
 LIBC		=		ar rcs
 
-INC			=		-I ./includes
+INC			=		-I ./ft_printf.h $(LIBFT_PATH)$(LIBFT).h
 
-all: 		$(OBJS) $(NAME)
+all: 		$(PRINTF)
 
-%.o:		%.c
-					@echo "Compiling $<"
-					@$(CC) $(CFLAGS) -c $(INC) $< -o $(<:c=o)
-					@echo "Compiling OK!"
+$(PRINTF): $(OBJECTS) $(LIBFT_PATH)
+					@echo "Compiling Libft..."
+					@make bonus -C $(LIBFT_PATH) $(LIBFT).a
+					@echo "OK !"
+					@cp $(LIBFT_PATH)$(LIBFT).a $(PRINTF).a
+					@echo "Creating PRINTF Executable..."
+					@ar -rcs $(PRINTF).a $(OBJECTS)
+					@echo "OK !"
 
-$(NAME):	$(OBJS)
-					@echo "Creating executable"
-					@$(LIBC) $(NAME) $(OBJS)
-					@echo "Job's done!"
+$(OBJECTS): $(SRCS)
+					@echo "Compiling PRINTF..."
+					@clang -Wall -Wextra -Werror -c $(SRCS)
+					@echo "OK !"
 
 clean:
+					@make clean -C $(LIBFT_PATH)
 					@echo "Cleaning objects..."
-					@rm -f $(OBJS)
+					@rm -f $(OBJECTS)
 					@echo "Cleaned up!"
 
 fclean:		clean
+					@make fclean -C $(LIBFT_PATH)
 					@echo "Cleaning..."
-					@rm -f $(NAME)
+					@rm -f $(PRINTF).a
 					@echo "Cleaned up!"
 
 re:			fclean all

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_base.c                                          :+:      :+:    :+:   */
+/*   ft_printf_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:29:59 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/22 23:36:29 by ade-beco         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:56:42 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,21 @@ static char	*ft_convert_nbr_base(unsigned long long a,
 	return (res);
 }
 
-int	ft_base(unsigned long long nbr, int base, int lower)
+int	ft_printf_base(unsigned long long nbr, int base, int lower)
 {
 	char	*res;
 	int		res_lenght;
 	int		c;
 
 	if (nbr == 0)
-		return (ft_putchar('0'));
+		return (ft_printf_putchar('0'));
 	res_lenght = ft_lenght_nbr(nbr, base);
 	res = malloc(sizeof(char) * (res_lenght + 1));
 	if (!res)
 		return (-1);
 	res = ft_convert_nbr_base(nbr, base, res, res_lenght);
 	res[res_lenght] = '\0';
-	c = ft_putstr(res, lower);
+	c = ft_printf_putstr(res, lower);
 	free(res);
 	return (c);
 }

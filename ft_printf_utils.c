@@ -1,44 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_treatments.c                                    :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 10:50:31 by ade-beco          #+#    #+#             */
-/*   Updated: 2023/11/22 23:36:21 by ade-beco         ###   ########.fr       */
+/*   Created: 2024/01/09 17:54:06 by ade-beco          #+#    #+#             */
+/*   Updated: 2024/01/09 17:58:54 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_treat_dec(long long int nbr)
+int	ft_printf_putchar(char c)
 {
-	int	c;
-	int	j;
-
-	c = 0;
-	if (nbr < 0)
-	{
-		if (ft_putchar('-') == -1)
-			return (-1);
-		nbr *= -1;
-		c++;
-	}
-	j = ft_base(nbr, 10, 0);
-	if (j == -1)
+	if (write(1, &c, 1) == -1)
 		return (-1);
-	return (c + j);
+	return (1);
 }
 
-int	ft_treat_void(long long int nbr)
+int	ft_printf_putstr(char *s, int lower)
 {
-	int	j;
+	int	l;
+	int	i;
+	int	c;
 
-	if (ft_putstr("0x", 0) == -1)
-		return (-1);
-	j = ft_base((unsigned long long)nbr, 16, 1);
-	if (j == -1)
-		return (-1);
-	return (2 + j);
+	i = 0;
+	c = 0;
+	if (!s)
+		return (ft_printf_putstr("(null)", 0));
+	l = ft_strlen(s);
+	while (i < l)
+	{
+		if (lower)
+			s[i] = ft_tolower(s[i]);
+		if (ft_printf_putchar(s[i++]) == -1)
+			return (-1);
+		c++;
+	}
+	return (c);
 }
